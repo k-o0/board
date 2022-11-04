@@ -11,9 +11,9 @@
 				<label th:for="${#ids.next('author')}" class="required">投稿者</label>
 			</dt>
 			<dd>
-				<div>
-					<input type="text" th:field="*{author}" /> <span
-						th:if="${#fields.hasErrors('author')}" th:errors="*{author}"
+				<div>					
+					<input type="text" th:field="*{author}" /> 
+						<span th:if="${#fields.hasErrors('author')}" th:errors="*{author}"
 						th:errorclass="err" />
 				</div>
 			</dd>
@@ -22,8 +22,8 @@
 			</dt>
 			<dd>
 				<div>
-					<input type="text" th:field="*{title}" /> <span
-						th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
+					<input type="text" th:field="*{title}" /> 
+						<span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"
 						th:errorclass="err" />
 				</div>
 			</dd>
