@@ -24,9 +24,9 @@ import org.springframework.validation.annotation.Validated;
 @Controller
 public class BoardController {
 	
-	/** 投稿の一覧 */
-	   @Autowired
-	   private PostRepository repository;
+　/** 投稿の一覧 */
+   @Autowired
+   private PostRepository repository;
 
     /**
     * 一覧を表示する。
@@ -37,6 +37,7 @@ public class BoardController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("form", PostFactory.newPost());
+	model = this.setList(model);
         model.addAttribute("path", "create");
         return "layout";
     }
@@ -62,7 +63,7 @@ public class BoardController {
         */
         @RequestMapping(value = "/create", method = RequestMethod.POST)
         //public String create(@ModelAttribute("form") Post form, BindingResult result,Model model) {
-        public String create(@ModelAttribute("form") @Validated Post form, BindingResult result, Model model) {
+	public String create(@ModelAttribute("form") @Validated Post form, BindingResult result, Model model) {
             if (!result.hasErrors()) {
                 repository.saveAndFlush(PostFactory.createPost(form));
                 model.addAttribute("form", PostFactory.newPost());
@@ -80,7 +81,12 @@ public class BoardController {
          * @return テンプレート
          */
          @RequestMapping(value = "/edit", method = RequestMethod.GET)
-         public String edit(@ModelAttribute("form") Post form, Model model) {
+         //public String edit(@ModelAttribute("form") Post form, Model model) {
+	public String update(@ModelAttribute("form") @Validated Post form, BindingResult result, Model model) {
+		if (!result.hasErrors()) {
+		    Optional<Post> post = repository.findById(form.getId());
+		    repository.saveAndFlush(PostFactory.updatePost(post.get(), form));
+		}
              Optional<Post> post = repository.findById(form.getId());
              model.addAttribute("form", post);
              model = setList(model);
