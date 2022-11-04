@@ -1,9 +1,10 @@
 package com.example.board.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 
 /**
  * 投稿のリポジトリー.
@@ -18,5 +19,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 	    * @return 投稿
 	    */
 	public Optional<Post> findById(String id);
-
+	
+	
 }
+
