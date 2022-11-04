@@ -31,26 +31,20 @@ public class Post {
 
     /** 投稿者 */
     @Column(length = 20, nullable = false)
-    //@NotEmpty
-    @NotEmpty(groups = Group1.class)
-    //@Size(min = 1, max = 20)
-    @Size(min = 1, max = 20, groups = Group2.class)    
+    @NotEmpty
+    @Size(min = 1, max = 20)
     private String author = null;
 
     /** タイトル */    
     @Column(length = 20, nullable = false)
-    //@NotEmpty
-    @NotEmpty(groups = Group1.class)
-    //@Size(min = 1, max = 20)
-    @Size(min = 1, max = 20, groups = Group2.class)
+    @NotEmpty
+    @Size(min = 1, max = 20)
     private String title = null;
 
     /** 内容 */
     @Column(length = 1000, nullable = false)
-    //@NotEmpty
-    @NotEmpty(groups = Group1.class)
-    // @Size(min = 1, max = 1000)
-    @Size(min = 1, max = 1000, groups = Group2.class)
+    @NotEmpty
+    @Size(min = 1, max = 1000)
     private String body = null;
 
     /** 登録日時 */
